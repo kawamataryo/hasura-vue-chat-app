@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Board from "@/components/board.vue"
+import Board from "@/components/board.vue";
 
 export default Vue.extend({
   name: "App",

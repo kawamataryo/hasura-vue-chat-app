@@ -7,9 +7,7 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "board"
-})
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
