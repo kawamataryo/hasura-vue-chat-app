@@ -6,6 +6,7 @@
           v-for="m in messages"
           :key="m.id"
           :message="m"
+          :is-mine="isMine(m.userId)"
         ></message-card>
       </v-container>
     </div>
@@ -20,6 +21,7 @@ import gql from "graphql-tag";
 import MessageForm from "./MessageForm";
 import MessageCard from "./MessageCard";
 import { scrollTo } from "scroll-js";
+import uuid from "uuid/v1";
 
 export default {
   name: "Board",
@@ -29,23 +31,28 @@ export default {
   },
   data() {
     return {
-      messages: []
+      messages: [],
+      userId: uuid()
     };
   },
   methods: {
     async addMessage(content) {
       await this.$apollo.mutate({
         mutation: gql`
-          mutation($content: String!) {
-            insert_messages(objects: { content: $content }) {
+          mutation($content: String!, $userId: String!) {
+            insert_messages(objects: { content: $content, user_id: $userId }) {
               affected_rows
             }
           }
         `,
         variables: {
-          content
+          content,
+          userId: this.userId
         }
       });
+    },
+    isMine(userId) {
+      return this.userId === userId
     }
   },
   watch: {
