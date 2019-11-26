@@ -7121,6 +7121,11 @@ schema-utils@^2.0.0, schema-utils@^2.1.0, schema-utils@^2.5.0:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
 
+scroll-js@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/scroll-js/-/scroll-js-3.1.0.tgz#c88e616fbf5994db6b4e2b0be39bbf1fff15c11a"
+  integrity sha512-a7luDtNNjMUvb+4r/+tp/Q+QH7PQR23n+59wukbwnACkieyN1EZjT2/8xMlXKpJHeVbKcSHPiDH2B/74mEcNMg==
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"

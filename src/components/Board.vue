@@ -6,7 +6,6 @@
           v-for="m in messages"
           :key="m.id"
           :message="m"
-          :is-mine="Math.random() >= 0.5"
         ></message-card>
       </v-container>
     </div>
@@ -20,6 +19,7 @@
 import gql from "graphql-tag";
 import MessageForm from "./MessageForm";
 import MessageCard from "./MessageCard";
+import { scrollTo } from "scroll-js";
 
 export default {
   name: "Board",
@@ -51,7 +51,11 @@ export default {
   watch: {
     async messages() {
       await this.$nextTick();
-      window.scrollTo(0, document.body.scrollHeight);
+      await scrollTo(window, {
+        top: document.body.scrollHeight,
+        duration: 1000,
+        easing: "ease-in"
+      });
     }
   },
   apollo: {
