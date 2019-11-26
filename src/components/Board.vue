@@ -31,9 +31,11 @@ export default {
   },
   data() {
     return {
-      messages: [],
-      userId: uuid()
+      messages: []
     };
+  },
+  computed: {
+    userId: () => uuid()
   },
   methods: {
     async addMessage(content) {
@@ -52,7 +54,7 @@ export default {
       });
     },
     isMine(userId) {
-      return this.userId === userId
+      return this.userId === userId;
     }
   },
   watch: {
@@ -71,6 +73,7 @@ export default {
         query {
           messages {
             content
+            userId: user_id
             id
           }
         }
@@ -80,6 +83,7 @@ export default {
           subscription {
             messages {
               id
+              userId: user_id
               content
             }
           }
