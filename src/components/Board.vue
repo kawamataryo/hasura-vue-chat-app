@@ -2,19 +2,19 @@
   <div>
     <h1>Hello</h1>
     <message-form @submit="addMessage"></message-form>
-    <ul>
-      <li v-for="m in messages" :key="m.id">{{ m.content }}</li>
-    </ul>
+    <message-card v-for="m in messages" :key="m.id" :message="m" :is-mine="Math.random() >= 0.5"></message-card>
   </div>
 </template>
 
 <script>
 import gql from "graphql-tag";
 import MessageForm from "./MessageForm";
+import MessageCard from "./MessageCard";
 
 export default {
   name: "Board",
   components: {
+    MessageCard,
     MessageForm
   },
   data() {
