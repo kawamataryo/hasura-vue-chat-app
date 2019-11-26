@@ -4,9 +4,7 @@
       <h1>GraphQL chat app</h1>
     </v-app-bar>
     <v-content>
-      <v-container>
-        <board></board>
-      </v-container>
+      <board></board>
     </v-content>
   </v-app>
 </template>

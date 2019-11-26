@@ -1,13 +1,13 @@
 <template>
-  <form>
-    <v-text-field
-        v-model="content"
-        required
-        label="content"
-    >
+  <div class="pa-5">
+    <v-text-field v-model="content" required label="message" outlined hide-details>
+      <template v-slot:append>
+        <v-icon @click="submit" color="primary">
+          mdi-send
+        </v-icon>
+      </template>
     </v-text-field>
-    <v-btn @click="submit">submit</v-btn>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -19,11 +19,13 @@ export default {
   methods: {
     submit() {
       this.$emit("submit", this.content);
+      this.clean();
+    },
+    clean() {
+      this.content = "";
     }
   }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

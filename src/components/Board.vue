@@ -1,8 +1,18 @@
 <template>
   <div>
-    <h1>Hello</h1>
-    <message-form @submit="addMessage"></message-form>
-    <message-card v-for="m in messages" :key="m.id" :message="m" :is-mine="Math.random() >= 0.5"></message-card>
+    <div class="messages-wrapper">
+      <v-container>
+        <message-card
+          v-for="m in messages"
+          :key="m.id"
+          :message="m"
+          :is-mine="Math.random() >= 0.5"
+        ></message-card>
+      </v-container>
+    </div>
+    <v-card class="message-from-wrapper">
+      <message-form @submit="addMessage"></message-form>
+    </v-card>
   </div>
 </template>
 
@@ -24,7 +34,7 @@ export default {
   },
   methods: {
     async addMessage(content) {
-      const updateResult = await this.$apollo.mutate({
+      await this.$apollo.mutate({
         mutation: gql`
           mutation($content: String!) {
             insert_messages(objects: { content: $content }) {
@@ -36,7 +46,12 @@ export default {
           content
         }
       });
-      console.log(updateResult.data.rowsAffected.messages.length)
+    }
+  },
+  watch: {
+    async messages() {
+      await this.$nextTick();
+      window.scrollTo(0, document.body.scrollHeight);
     }
   },
   apollo: {
@@ -53,13 +68,12 @@ export default {
         document: gql`
           subscription {
             messages {
-              content
               id
+              content
             }
           }
         `,
         updateQuery: (previousResult, { subscriptionData }) => {
-          console.log(subscriptionData.data);
           return subscriptionData.data;
         }
       }
@@ -68,4 +82,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.messages-wrapper {
+  margin-bottom: 100px;
+}
+.message-from-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+</style>
