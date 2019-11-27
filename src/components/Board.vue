@@ -22,6 +22,13 @@ import MessageForm from "./MessageForm";
 import MessageCard from "./MessageCard";
 import { scrollTo } from "scroll-js";
 import uuid from "uuid/v1";
+import ls from "local-storage";
+
+const generateColor = () =>
+  "#" + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+
+const UID_STORAGE_KEY = "hasura-chat-uid";
+const COLOR_STORAGE_KEY = "hasura-chat-color";
 
 export default {
   name: "Board",
@@ -35,7 +42,8 @@ export default {
     };
   },
   computed: {
-    userId: () => uuid()
+    userId: () => ls.get(UID_STORAGE_KEY),
+    userColor: () => ls.get(COLOR_STORAGE_KEY)
   },
   methods: {
     async addMessage(content) {
@@ -92,6 +100,14 @@ export default {
           return subscriptionData.data;
         }
       }
+    }
+  },
+  mounted() {
+    if (!ls.get(UID_STORAGE_KEY)) {
+      ls.set(UID_STORAGE_KEY, uuid());
+    }
+    if (ls.set(COLOR_STORAGE_KEY, generateColor())) {
+      ls.set(COLOR_STORAGE_KEY, uuid());
     }
   }
 };

@@ -10,6 +10,7 @@ schema {
 type messages {
     content: String!
     id: Int!
+    user_id: String!
 }
 
 "aggregated selection of \"messages\""
@@ -42,12 +43,14 @@ type messages_avg_fields {
 type messages_max_fields {
     content: String
     id: Int
+    user_id: String
 }
 
 "aggregate min on columns"
 type messages_min_fields {
     content: String
     id: Int
+    user_id: String
 }
 
 "response of any mutation on the table \"messages\""
@@ -186,6 +189,8 @@ type subscription_root {
 enum messages_constraint {
     #unique or primary key constraint
     messages_pkey
+    #unique or primary key constraint
+    messages_user_id_key
 }
 
 "select columns of table \"messages\""
@@ -194,6 +199,8 @@ enum messages_select_column {
     content
     #column name
     id
+    #column name
+    user_id
 }
 
 "update columns of table \"messages\""
@@ -202,6 +209,8 @@ enum messages_update_column {
     content
     #column name
     id
+    #column name
+    user_id
 }
 
 "column ordering options"
@@ -285,6 +294,7 @@ input messages_bool_exp {
     _or: [messages_bool_exp]
     content: String_comparison_exp
     id: Int_comparison_exp
+    user_id: String_comparison_exp
 }
 
 "input type for incrementing integer columne in table \"messages\""
@@ -296,18 +306,21 @@ input messages_inc_input {
 input messages_insert_input {
     content: String
     id: Int
+    user_id: String
 }
 
 "order by max() on columns of table \"messages\""
 input messages_max_order_by {
     content: order_by
     id: order_by
+    user_id: order_by
 }
 
 "order by min() on columns of table \"messages\""
 input messages_min_order_by {
     content: order_by
     id: order_by
+    user_id: order_by
 }
 
 "input type for inserting object relation for remote table \"messages\""
@@ -327,12 +340,14 @@ input messages_on_conflict {
 input messages_order_by {
     content: order_by
     id: order_by
+    user_id: order_by
 }
 
 "input type for updating data in table \"messages\""
 input messages_set_input {
     content: String
     id: Int
+    user_id: String
 }
 
 "order by stddev() on columns of table \"messages\""
