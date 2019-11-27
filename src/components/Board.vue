@@ -43,21 +43,28 @@ export default {
   },
   computed: {
     userId: () => ls.get(UID_STORAGE_KEY),
-    userColor: () => ls.get(COLOR_STORAGE_KEY)
+    iconColor: () => ls.get(COLOR_STORAGE_KEY)
   },
   methods: {
     async addMessage(content) {
       await this.$apollo.mutate({
         mutation: gql`
-          mutation($content: String!, $userId: String!) {
-            insert_messages(objects: { content: $content, user_id: $userId }) {
+          mutation($content: String!, $userId: String!, $iconColor: String!) {
+            insert_messages(
+              objects: {
+                content: $content
+                user_id: $userId
+                icon_color: $iconColor
+              }
+            ) {
               affected_rows
             }
           }
         `,
         variables: {
           content,
-          userId: this.userId
+          userId: this.userId,
+          iconColor: this.iconColor
         }
       });
     },
@@ -82,6 +89,7 @@ export default {
           messages {
             content
             userId: user_id
+            iconColor: icon_color
             id
           }
         }
@@ -92,6 +100,7 @@ export default {
             messages {
               id
               userId: user_id
+              iconColor: icon_color
               content
             }
           }
@@ -106,8 +115,8 @@ export default {
     if (!ls.get(UID_STORAGE_KEY)) {
       ls.set(UID_STORAGE_KEY, uuid());
     }
-    if (ls.set(COLOR_STORAGE_KEY, generateColor())) {
-      ls.set(COLOR_STORAGE_KEY, uuid());
+    if (!ls.get(COLOR_STORAGE_KEY)) {
+      ls.set(COLOR_STORAGE_KEY, generateColor());
     }
   }
 };

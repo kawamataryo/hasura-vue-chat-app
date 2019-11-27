@@ -6,12 +6,12 @@
           {{ message.content }}
         </v-card-text>
       </v-card>
-      <v-avatar color="indigo" size="36" class="ml-3">
+      <v-avatar :color="message.iconColor" size="36" class="ml-3">
         <v-icon dark>mdi-account-circle</v-icon>
       </v-avatar>
     </div>
     <div class="d-flex justify-start align-center" v-else>
-      <v-avatar color="green" size="36" class="mr-3">
+      <v-avatar :color="message.iconColor" size="36" class="mr-3">
         <v-icon dark>mdi-account-circle</v-icon>
       </v-avatar>
       <v-card class="text-break">
