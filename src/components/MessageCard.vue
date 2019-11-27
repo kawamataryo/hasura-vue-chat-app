@@ -6,7 +6,7 @@
           {{ message.content }}
         </v-card-text>
       </v-card>
-      <v-avatar color="indigo" class="ml-3" >
+      <v-avatar color="indigo" class="ml-3">
         <v-icon dark>mdi-account-circle</v-icon>
       </v-avatar>
     </div>

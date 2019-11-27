@@ -1,6 +1,12 @@
 <template>
   <div class="pa-5">
-    <v-text-field v-model="content" required label="message" outlined hide-details>
+    <v-text-field
+      v-model="content"
+      required
+      label="message"
+      outlined
+      hide-details
+    >
       <template v-slot:append>
         <v-icon @click="submit" color="primary">
           mdi-send
