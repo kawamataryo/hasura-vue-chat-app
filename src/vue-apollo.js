@@ -11,12 +11,13 @@ import VueApollo from "vue-apollo";
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
-  uri: "http://localhost:8000/v1/graphql"
+  uri: process.env.VUE_APP_GRAHQL_API_URI || "http://localhost:8000/v1/graphql"
 });
 
 // Create the subscription websocket link
 const wsLink = new WebSocketLink({
-  uri: "ws://localhost:8000/v1/graphql",
+  uri:
+    process.env.VUE_APP_GRAHQL_WS_API_URI || "ws://localhost:8000/v1/graphql",
   options: {
     reconnect: true
   }
