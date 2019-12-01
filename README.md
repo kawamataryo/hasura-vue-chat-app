@@ -1,5 +1,7 @@
 # hasura-vue-chat-app
 
+hasuraのsabscription機能を利用したチャットアプリ
+
 ## Project setup
 ```
 yarn install
