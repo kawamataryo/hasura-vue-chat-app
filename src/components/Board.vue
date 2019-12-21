@@ -47,6 +47,12 @@ export default {
   },
   methods: {
     async addMessage(content) {
+      this.messages.push({
+        userId: this.userId,
+        iconColor: this.iconColor,
+        content
+      });
+
       await this.$apollo.mutate({
         mutation: gql`
           mutation($content: String!, $userId: String!, $iconColor: String!) {
