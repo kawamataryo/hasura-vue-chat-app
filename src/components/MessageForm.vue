@@ -31,7 +31,7 @@ export default {
   }),
   methods: {
     submit() {
-      if (this.content === "") return;
+      if (this.content.length === 0) return;
 
       this.$emit("submit", this.content);
       this.clean();
