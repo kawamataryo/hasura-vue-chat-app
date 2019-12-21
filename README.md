@@ -2,7 +2,8 @@
 
 This is the source code for a chat app that uses subscriptions in Vue-apollo and Hasura GraphQL Engine.
 
-![Dec-21-2019 15-25-50](https://user-images.githubusercontent.com/11070996/71304205-eba3b680-2406-11ea-87f4-1c737a2b2d26.gif)
+![Dec-21-2019 16-44-3](https://user-images.githubusercontent.com/11070996/71305034-8a351500-2411-11ea-9f0c-4a1661983722.gif)
+
 
 # Hasura setup
 
