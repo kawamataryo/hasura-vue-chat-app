@@ -10,7 +10,7 @@ This is the source code for a chat app that uses subscriptions in Vue-apollo and
 docker-compose up -d
 ```
 
-After starting the container, access to [http://localhost:8000/console.8000](http://localhost:8000/console.8000).
+After starting the container, access to [http://localhost:8000/console](http://localhost:8000/console).
 In hasura console, create `messasges` table. Like the following sentence.
 
 |column|type|
