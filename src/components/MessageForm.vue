@@ -1,8 +1,13 @@
 <template>
-  <v-form class="pa-5" ref="form" v-model="valid" lazy-validation>
+  <v-form
+    class="pa-5"
+    ref="form"
+    v-model="valid"
+    lazy-validation
+    @submit.prevent="submit"
+  >
     <v-text-field
       v-model="content"
-      :rules="contentRules"
       required
       label="message"
       outlined
@@ -24,12 +29,9 @@ export default {
     content: "",
     valid: true
   }),
-  computed: {
-    contentRules: () => [v => !!v || "Message is required"]
-  },
   methods: {
     submit() {
-      if (!this.$refs.form.validate()) return;
+      if (this.content === "") return;
 
       this.$emit("submit", this.content);
       this.clean();
