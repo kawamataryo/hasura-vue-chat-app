@@ -1,0 +1,42 @@
+[
+ {
+  "index": 0,
+  "html": {
+   "ancestors": [
+    "<div class=\"v-text-field__slot\"></div>",
+    "<div class=\"v-input__slot\"></div>"
+   ],
+   "node": "<input required=\"required\" id=\"input-11\" type=\"text\" labels=\"message\"/>"
+  }
+ },
+ {
+  "index": 1,
+  "html": {
+   "ancestors": [
+    "<div class=\"v-text-field__slot\"></div>",
+    "<div class=\"v-input__slot\"></div>"
+   ],
+   "node": "<input required=\"required\" id=\"input-11\" type=\"text\" labels=\"message\"/>"
+  }
+ },
+ {
+  "index": 2,
+  "html": {
+   "ancestors": [
+    "<div class=\"v-text-field__slot\"></div>",
+    "<div class=\"v-input__slot\"></div>"
+   ],
+   "node": "<input required=\"required\" id=\"input-11\" type=\"text\" labels=\"message\"/>"
+  }
+ },
+ {
+  "index": 3,
+  "html": {
+   "ancestors": [
+    "<div class=\"v-input__append-inner\"></div>",
+    "<div class=\"v-input__slot\"></div>"
+   ],
+   "node": "<i role=\"button\" class=\"v-icon notranslate v-icon--link mdi mdi-send theme--light primary--text\"></i>"
+  }
+ }
+]
