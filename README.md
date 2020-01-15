@@ -12,7 +12,7 @@ docker-compose up -d
 ```
 
 After starting the container, access to [http://localhost:8000/console](http://localhost:8000/console).
-In hasura console, create `messasges` table. Like the following sentence.
+In hasura console, create `messages` table. Like the following sentence.
 
 |column|type|
 |---|---|
