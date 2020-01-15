@@ -7,11 +7,12 @@
           :key="m.id"
           :message="m"
           :is-mine="isMine(m.userId)"
-        ></message-card>
+          @delete-message="deleteMessage"
+        />
       </v-container>
     </div>
     <v-card class="message-from-wrapper">
-      <message-form @submit="addMessage"></message-form>
+      <message-form @submit="addMessage" />
     </v-card>
   </div>
 </template>
@@ -52,27 +53,53 @@ export default {
         iconColor: this.iconColor,
         content
       });
-
-      await this.$apollo.mutate({
-        mutation: gql`
-          mutation($content: String!, $userId: String!, $iconColor: String!) {
-            insert_messages(
-              objects: {
-                content: $content
-                user_id: $userId
-                icon_color: $iconColor
+      try {
+        await this.$apollo.mutate({
+          mutation: gql`
+            mutation($content: String!, $userId: String!, $iconColor: String!) {
+              insert_messages(
+                objects: {
+                  content: $content
+                  user_id: $userId
+                  icon_color: $iconColor
+                }
+              ) {
+                affected_rows
               }
-            ) {
-              affected_rows
             }
+          `,
+          variables: {
+            content,
+            userId: this.userId,
+            iconColor: this.iconColor
           }
-        `,
-        variables: {
-          content,
-          userId: this.userId,
-          iconColor: this.iconColor
-        }
-      });
+        });
+      } catch (e) {
+        console.error("Add message failed", e);
+      }
+    },
+    async deleteMessage(id) {
+      if (
+        !confirm("Are you sure you want to permanently delete this message?")
+      ) {
+        return;
+      }
+      try {
+        await this.$apollo.mutate({
+          mutation: gql`
+            mutation($id: Int) {
+              delete_messages(where: { id: { _eq: $id } }) {
+                affected_rows
+              }
+            }
+          `,
+          variables: {
+            id
+          }
+        });
+      } catch (e) {
+        console.error("Delete message failed", e);
+      }
     },
     isMine(userId) {
       return this.userId === userId;

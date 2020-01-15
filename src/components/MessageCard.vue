@@ -5,6 +5,9 @@
         <v-card-text>
           {{ message.content }}
         </v-card-text>
+        <v-icon class="delete-icon" size="20" @click="deleteMessage"
+          >mdi-close-circle-outline</v-icon
+        >
       </v-card>
       <v-avatar :color="message.iconColor" size="32" class="ml-3">
         <v-icon dark>mdi-account</v-icon>
@@ -35,6 +38,19 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+    deleteMessage() {
+      this.$emit("delete-message", this.message.id);
+    }
   }
 };
 </script>
+
+<style>
+.delete-icon {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+</style>
