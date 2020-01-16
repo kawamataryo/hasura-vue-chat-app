@@ -79,11 +79,6 @@ export default {
       }
     },
     async deleteMessage(id) {
-      if (
-        !confirm("Are you sure you want to permanently delete this message?")
-      ) {
-        return;
-      }
       try {
         await this.$apollo.mutate({
           mutation: gql`
