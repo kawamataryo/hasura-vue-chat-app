@@ -4,14 +4,16 @@ services:
     image: postgres
     restart: always
     volumes:
-    - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
   graphql-engine:
-    image: hasura/graphql-engine:v1.0.0-beta.10
+    image: hasura/graphql-engine:v1.0.0.cli-migrations
     ports:
     - "8000:8080"
     depends_on:
     - "postgres"
     restart: always
+    volumes:
+      - ./hasura-migrations/migrations:/hasura-migrations
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
