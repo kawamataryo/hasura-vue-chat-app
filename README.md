@@ -12,7 +12,7 @@ docker-compose up -d
 ```
 
 After starting the container, access to [http://localhost:8000/console](http://localhost:8000/console).
-In hasura console, create `messages` table. Like the following sentence.
+The `messges` table is automatically created. Like the following table.
 
 |column|type|
 |---|---|
@@ -20,8 +20,6 @@ In hasura console, create `messages` table. Like the following sentence.
 |user_id | Text |
 |icon_color | Text |
 |content | Text |
-
-![スクリーンショット 2019-12-21 9 18 27](https://user-images.githubusercontent.com/11070996/71299812-02301a80-23d3-11ea-8a8d-e3ba877a86bf.png)
 
 # Vue setup
 
