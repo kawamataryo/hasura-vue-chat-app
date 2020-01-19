@@ -28,19 +28,3 @@ jobs:
             node_modules/.bin/eslint . --format junit --output-file /tmp/test-reports/eslint/results.xml
       - store_test_results:
           path: /tmp/test-reports
-      - run:
-          name: install docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.25.1/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - setup_remote_docker
-      - run:
-          name: docker-compose up
-          command: |
-            set -x
-            docker-compose up -d
-      - run:
-          name: vue start
-          command: |
-            yarn run serve
