@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.3
+      - image: circleci/node:latest
     steps:
       - restore_cache:
           keys:
@@ -28,3 +28,18 @@ jobs:
             node_modules/.bin/eslint . --format junit --output-file /tmp/test-reports/eslint/results.xml
       - store_test_results:
           path: /tmp/test-reports
+      - run:
+          name: install docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
+          name: vue start
+          command: |
+            yarn run serve
